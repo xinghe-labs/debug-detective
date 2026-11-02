@@ -16,6 +16,7 @@ description: >
 license: MIT
 metadata:
   author: debug-detective contributors
+  homepage: https://github.com/xinghe-labs/debug-detective
   version: 1.1.0
 ---
 

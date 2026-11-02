@@ -38,11 +38,11 @@ English: Agent writes a minimal repro first, reads the full stack trace, forms r
 ### Pi
 
 ```bash
-# 用户级（所有项目可用）——把 /path/to 换成本仓库克隆/下载的位置
-cp -r /path/to/debug-detective ~/.pi/agent/skills/
+# 用户级（所有项目可用）
+git clone https://github.com/xinghe-labs/debug-detective ~/.pi/agent/skills/debug-detective
 
 # 或项目级（仅当前项目，在仓库根目录执行）
-mkdir -p .agents/skills && cp -r /path/to/debug-detective .agents/skills/
+mkdir -p .agents/skills && git clone https://github.com/xinghe-labs/debug-detective .agents/skills/debug-detective
 ```
 
 项目级技能需要在 Pi 中信任该项目（信任提示或 `pi --approve`）。然后重启 Pi 或执行 `/reload`。
@@ -50,7 +50,7 @@ mkdir -p .agents/skills && cp -r /path/to/debug-detective .agents/skills/
 ### Claude Code
 
 ```bash
-cp -r /path/to/debug-detective ~/.claude/skills/
+git clone https://github.com/xinghe-labs/debug-detective ~/.claude/skills/debug-detective
 ```
 
 ### 其他 Agent Skills 运行时

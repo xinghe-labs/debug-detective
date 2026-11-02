@@ -38,11 +38,11 @@ No build step and no dependencies — it is a folder of Markdown. Clone or downl
 ### Pi
 
 ```bash
-# user-level (available in all projects) — substitute /path/to with where you cloned/downloaded this repo
-cp -r /path/to/debug-detective ~/.pi/agent/skills/
+# user-level (available in all projects)
+git clone https://github.com/xinghe-labs/debug-detective ~/.pi/agent/skills/debug-detective
 
 # or project-level (this project only, from the repo root)
-mkdir -p .agents/skills && cp -r /path/to/debug-detective .agents/skills/
+mkdir -p .agents/skills && git clone https://github.com/xinghe-labs/debug-detective .agents/skills/debug-detective
 ```
 
 Project-level skills require trusting the project in Pi (approve prompt or `pi --approve`). Then restart Pi or run `/reload`.
@@ -50,7 +50,7 @@ Project-level skills require trusting the project in Pi (approve prompt or `pi -
 ### Claude Code
 
 ```bash
-cp -r /path/to/debug-detective ~/.claude/skills/
+git clone https://github.com/xinghe-labs/debug-detective ~/.claude/skills/debug-detective
 ```
 
 ### Any other Agent Skills runtime
