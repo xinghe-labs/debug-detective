@@ -33,39 +33,21 @@ Plus hard rules that target agent-specific failure modes: no invented APIs, no s
 
 ## Install
 
-No build step and no dependencies — it is a folder of Markdown. Clone or download this repository, then copy the `debug-detective/` folder into your runtime's skills directory.
-
-### Pi
+No build step and no dependencies — it is a folder of Markdown following the standard [Agent Skills specification](https://agentskills.io/specification). Clone it into your runtime's skills directory:
 
 ```bash
 # user-level (available in all projects)
-git clone https://github.com/xinghe-labs/debug-detective ~/.pi/agent/skills/debug-detective
+git clone https://github.com/xinghe-labs/debug-detective ~/.agents/skills/debug-detective
 
 # or project-level (this project only, from the repo root)
 mkdir -p .agents/skills && git clone https://github.com/xinghe-labs/debug-detective .agents/skills/debug-detective
 ```
 
-Project-level skills require trusting the project in Pi (approve prompt or `pi --approve`). Then restart Pi or run `/reload`.
-
-### Claude Code
-
-```bash
-git clone https://github.com/xinghe-labs/debug-detective ~/.claude/skills/debug-detective
-```
-
-### Any other Agent Skills runtime
-
-Copy the `debug-detective/` directory into the runtime's skills location (`~/.agents/skills/` or `.agents/skills/`, per the [specification](https://agentskills.io/specification)). The skill uses no runtime-specific features.
+`~/.agents/skills/` and `.agents/skills/` are the standard Agent Skills locations; runtimes that follow the spec (Pi, Claude Code, and others) discover the skill from there automatically. Restart your agent or reload skills after installing.
 
 ## Verify
 
-After restarting Pi (or `/reload`), run a one-shot check from any directory:
-
-```bash
-pi --no-session -p "List the exact names of all skills advertised to you."
-```
-
-`debug-detective` should appear in the list. Or force-load it interactively:
+After restarting your agent (Pi: `/reload`), ask it which skills are available — `debug-detective` should be listed. In Pi you can also force-load it:
 
 ```text
 /skill:debug-detective Reproduce this bug: <paste any error>
@@ -75,10 +57,10 @@ If the skill loads, the reply will follow the ROOT loop (reproduce → observe �
 
 ## FAQ / Troubleshooting
 
-- **It doesn't trigger when I report a bug.** Skill routing is model-driven; always load it explicitly with `/skill:debug-detective <bug description>` (Pi) or by naming it in your request.
-- **I edited the skill but nothing changed.** Skills are scanned at startup — run `/reload` or restart Pi.
-- **How do I update it?** If you cloned it: `git -C ~/.pi/agent/skills/debug-detective pull`. Otherwise re-copy the folder and `/reload`.
-- **How do I uninstall it?** Delete the folder (`rm -rf ~/.pi/agent/skills/debug-detective`) and `/reload`.
+- **It doesn't trigger when I report a bug.** Skill routing is model-driven; load it explicitly — in Pi with `/skill:debug-detective <bug description>`, or by naming the skill in your request.
+- **I edited the skill but nothing changed.** Skills are scanned at startup — reload or restart your agent (Pi: `/reload`).
+- **How do I update it?** If you cloned it: `git -C ~/.agents/skills/debug-detective pull`. Otherwise re-clone the folder and reload.
+- **How do I uninstall it?** Delete the folder (`rm -rf ~/.agents/skills/debug-detective`) and reload.
 - **Startup warning about a name collision?** Another skill named `debug-detective` exists earlier in discovery order — remove or rename one of them.
 
 ## Contents

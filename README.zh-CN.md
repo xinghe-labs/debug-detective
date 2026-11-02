@@ -33,39 +33,21 @@ English: Agent writes a minimal repro first, reads the full stack trace, forms r
 
 ## 安装
 
-无需构建、零依赖——本质就是一个 Markdown 文件夹。克隆或下载本仓库后，把 `debug-detective/` 文件夹复制进你所用运行时的技能目录即可。
-
-### Pi
+无需构建、零依赖——本质就是一个遵循标准 [Agent Skills 规范](https://agentskills.io/specification) 的 Markdown 文件夹。把它克隆进你所用运行时的技能目录：
 
 ```bash
 # 用户级（所有项目可用）
-git clone https://github.com/xinghe-labs/debug-detective ~/.pi/agent/skills/debug-detective
+git clone https://github.com/xinghe-labs/debug-detective ~/.agents/skills/debug-detective
 
 # 或项目级（仅当前项目，在仓库根目录执行）
 mkdir -p .agents/skills && git clone https://github.com/xinghe-labs/debug-detective .agents/skills/debug-detective
 ```
 
-项目级技能需要在 Pi 中信任该项目（信任提示或 `pi --approve`）。然后重启 Pi 或执行 `/reload`。
-
-### Claude Code
-
-```bash
-git clone https://github.com/xinghe-labs/debug-detective ~/.claude/skills/debug-detective
-```
-
-### 其他 Agent Skills 运行时
-
-把 `debug-detective/` 目录复制到对应运行时的技能位置（`~/.agents/skills/` 或 `.agents/skills/`，按[规范](https://agentskills.io/specification)）。本 skill 不依赖任何运行时特性。
+`~/.agents/skills/` 与 `.agents/skills/` 是 Agent Skills 规范的标准位置；遵循规范的运行时（Pi、Claude Code 等）会自动从这里发现该 skill。安装后重启或重载技能即可。
 
 ## 验证
 
-重启 Pi（或 `/reload`）后，在任意目录运行一次性检查：
-
-```bash
-pi --no-session -p "List the exact names of all skills advertised to you."
-```
-
-列表中应出现 `debug-detective`。也可以交互式强制加载：
+重启 agent（Pi 中为 `/reload`）后，询问它当前有哪些可用技能——列表中应有 `debug-detective`。Pi 中也可以强制加载：
 
 ```text
 /skill:debug-detective 复现这个 bug：<粘贴任意报错>
@@ -75,10 +57,10 @@ pi --no-session -p "List the exact names of all skills advertised to you."
 
 ## 常见问题 / 故障排除
 
-- **报了 bug 却没触发？** 技能路由由模型决定；始终可以显式加载：`/skill:debug-detective <bug 描述>`（Pi），或在请求中点名 skill。
-- **改了 skill 却没生效？** 技能在启动时扫描——执行 `/reload` 或重启 Pi。
-- **怎么升级？** 若是 git 克隆安装：`git -C ~/.pi/agent/skills/debug-detective pull`；否则重新复制文件夹后 `/reload`。
-- **怎么卸载？** 删除文件夹（`rm -rf ~/.pi/agent/skills/debug-detective`）后 `/reload`。
+- **报了 bug 却没触发？** 技能路由由模型决定；可显式加载——Pi 中用 `/skill:debug-detective <bug 描述>`，或在请求中点名 skill。
+- **改了 skill 却没生效？** 技能在启动时扫描——重载或重启 agent（Pi 中为 `/reload`）。
+- **怎么升级？** 若是 git 克隆安装：`git -C ~/.agents/skills/debug-detective pull`；否则重新克隆后重载。
+- **怎么卸载？** 删除文件夹（`rm -rf ~/.agents/skills/debug-detective`）后重载。
 - **启动时提示名称冲突？** 发现顺序更靠前处存在同名 `debug-detective` 技能——删除或重命名其一。
 
 ## 文件结构
