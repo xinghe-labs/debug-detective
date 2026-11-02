@@ -68,7 +68,6 @@ mkdir -p .agents/skills && git clone https://github.com/xinghe-labs/debug-detect
 ```text
 debug-detective/
 ├── SKILL.md                      # ROOT 循环、硬性规则、症状速查表
-├── CHANGELOG.md
 └── references/
     ├── anti-patterns.md          # 10 种 agent 调试失败模式 + 纠正动作
     └── heuristics.md             # 8 类经典 bug + 系统化定位策略

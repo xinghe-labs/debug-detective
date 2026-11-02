@@ -68,7 +68,6 @@ If the skill loads, the reply will follow the ROOT loop (reproduce → observe �
 ```text
 debug-detective/
 ├── SKILL.md                      # the ROOT loop, hard rules, symptom cheatsheet
-├── CHANGELOG.md
 └── references/
     ├── anti-patterns.md          # 10 agent debugging failure modes + corrective moves
     └── heuristics.md             # 8 classic bug categories + hunting strategies
