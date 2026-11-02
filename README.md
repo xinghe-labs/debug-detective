@@ -1,5 +1,9 @@
 # 🕵️ debug-detective
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-spec-blue)](https://agentskills.io/specification)
+[![Version](https://img.shields.io/badge/version-1.1.0-green)](../../releases)
+
 [English](README.md) | 简体中文
 
 A universal [Agent Skill](https://agentskills.io/specification) that turns any AI coding agent into a disciplined debugger — one that reproduces before it fixes, gathers evidence before it guesses, and always hunts the root cause instead of patching symptoms.

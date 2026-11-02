@@ -1,5 +1,9 @@
 # 🕵️ debug-detective 调试侦探
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-spec-blue)](https://agentskills.io/specification)
+[![Version](https://img.shields.io/badge/version-1.1.0-green)](../../releases)
+
 [English](README.md) | 简体中文
 
 一个通用的 [Agent Skill](https://agentskills.io/specification)，把任意 AI 编码 agent 变成有纪律的调试者：**先复现再修复、先证据后猜测，永远追根因而非打补丁**。
